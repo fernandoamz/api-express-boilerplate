@@ -88,6 +88,7 @@ Host: 127.0.0.1:3000
 Authorization: Bearer xxxxxx
 Cache-Control: no-cache
 ```
+
 Response:
 ```js
 {
@@ -95,6 +96,13 @@ Response:
     "error": "invalid_token",
     "error_description": "The access token provided is invalid."
 }
+
+.ENV file:
 ```
-# All things done! Now you can follow the ```/auth/token``` and ```/users/profile``` code to extend your site to support oauth2
-# Enjoy your Express 4 + OAuth2 demo!
+    MYSQL_ROOT_USER=root
+    MYSQL_ROOT_PASSWORD=root
+    MYSQL_DATABASE=oauth_server
+    MYSQL_LOCAL_PORT=3306
+    MYSQL_DOCKER_PORT=3000
+    MYSQL_HOST=mysql-app-instance
+```
