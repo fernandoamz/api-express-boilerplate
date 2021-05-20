@@ -96,8 +96,9 @@ Response:
     "error": "invalid_token",
     "error_description": "The access token provided is invalid."
 }
+```
 
-.ENV file:
+.ENV file configuration:
 ```
     MYSQL_ROOT_USER=root
     MYSQL_ROOT_PASSWORD=root
