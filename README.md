@@ -1,4 +1,4 @@
-# express-boilerplate-demo
+# Express Boilerplate Demo
 Full OAuth2 demo with express 4 framework (http://expressjs.com/) and oauth2-server (https://github.com/oauthjs/node-oauth2-server) for nodejs.
 
 # Background
