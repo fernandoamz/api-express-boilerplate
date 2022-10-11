@@ -1,19 +1,13 @@
 
-var mysql = require('mysql');
-const {
-    MYSQL_ROOT_USER,
-    MYSQL_ROOT_PASSWORD,
-    MYSQL_DATABASE,
-    MYSQL_HOST,
-} =  process.env;
+var mysql = require('mysql2');
 
 var sqlPool  = mysql.createPool({
     multipleStatements: true,
     connectionLimit : 100,
-    host            : MYSQL_HOST,
-    user            : MYSQL_ROOT_USER,
-    password        : MYSQL_ROOT_PASSWORD,
-    database        : MYSQL_DATABASE,
+    user: "root",
+	password: "root",
+	host: "mysql-app-instance",
+	database: "oauth_server",
 });
 
 module.exports = sqlPool;

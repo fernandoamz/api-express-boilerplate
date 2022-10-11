@@ -18,26 +18,25 @@ services:
       - "3000:3000"
     container_name: nodejs-mysql-app
   mysql:
-    image: mysql:5.7
+    image: mysql:latest
     networks:
       - backend
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_ROOT_USER}
-      - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=false
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     container_name: ${MYSQL_HOST}
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
+    image: phpmyadmin/phpmyadmin:latest
     depends_on:
       - mysql
     networks:
       - backend
     ports:
-      - "30002:80"
+      - "3002:80"
     environment:
       - PMA_HOST=mysql-app-instance
-      - PMA_PORT= 3306
+      - PMA_PORT=3306
     volumes:
       - /sessions
     container_name: phpmyadmin-app

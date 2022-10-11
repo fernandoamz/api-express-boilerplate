@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const oauth = require('./modules/oauth');
@@ -14,20 +13,12 @@ const auth = require('./routes/auth');
 
 const app = express();
 
-const csrfMiddleware = csrf({
-  cookie: {
-    httpOnly: true,
-    maxAge: 3600,
-  }
-});
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(csrfMiddleware);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
@@ -37,21 +28,11 @@ app.use('/auth', auth);
 const sqlPool = require('./modules/sqlPool');
 global.sqlPool = sqlPool;
 
-const {
-  $MYSQL_ROOT_USER,
-  $MYSQL_ROOT_PASSWORD,
-  $MYSQL_HOST,
-  $MYSQL_DATABASE,
-} = process.env;
-
 global.conn = {
-	user: $MYSQL_ROOT_USER,
-	password: $MYSQL_ROOT_PASSWORD,
-	server: $MYSQL_HOST,
-	database: $MYSQL_DATABASE,
-	options: {
-		encrypt: true 
-	}
+	user: "root",
+	password: "root",
+	server: "mysql-app-instance",
+	database: "oauth_server",
 };
 
 

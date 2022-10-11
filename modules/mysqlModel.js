@@ -63,6 +63,7 @@ model.getRefreshToken = function (bearerToken, callback) {
 model.getClient = function (clientId, clientSecret, callback) {
 	global.sqlPool.getConnection(function (err, connection) {
 		let sqlGetClient = "select * from client where clientid = '" + clientId + "' and clientsecret = '" + clientSecret + "';";
+        console.log("sqlGetClient", sqlGetClient)
 		connection.query(sqlGetClient, function (error, results, fields) {
             connection.release();
 			if (!error) {
